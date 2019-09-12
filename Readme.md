@@ -1,7 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
 * Студент: [Михаил](https://up.htmlacademy.ru/javascript/18/user/1080459).
-* Наставник: `Неизвестно`.
+* Наставник: [Игорь Белогуров](https://htmlacademy.ru/profile/id1026635).
 
 ---
 

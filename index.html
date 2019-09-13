@@ -190,8 +190,8 @@
     }
     return 2;
   }
-  var getWizardHeight = function(wizWidth) {
-    var wizHei = 1.337 * wizWidth;
+  var getWizardHeight = function(width) {
+    var wizHei = 1.337 * width;
     return wizHei;
   }
   var getWizardX = function(width) {
@@ -199,9 +199,12 @@
     return wizX;
   }
   var getWizardY = function(height) {
-    var wizY = height/3;
+    var wizY = height / 3;
     return wizY;
   }
+  console.log('Высота мага: ' + getWizardHeight(wizardWidth));
+  console.log('X мага: ' + getWizardX(300));
+  console.log('Y мага: ' + getWizardY(300));
 </script>
 <script src="js/game.js"></script>
 

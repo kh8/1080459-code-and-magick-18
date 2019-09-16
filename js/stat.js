@@ -35,6 +35,7 @@ window.renderStatistics = function () {
     ctx.fillStyle = '#000';
 
     var maxTime = getMaxElement(times);
+    ctx.font = '16px PT Mono';
     ctx.fillText('Ура вы победили!\nСписок результатов:', CLOUD_X + GAP, CLOUD_Y + GAP + FONT_GAP);
     for (var i = 0; i < players.length; i++) {
       var clr = Math.random() * 100;

@@ -43,20 +43,20 @@ var renderHeader = function (ctx) {
   ctx.fillText('Список результатов:', cloud.X + bar.GAP, cloud.Y + 4 * bar.GAP);
 };
 
-var renderBar = function (ctx, players, times) {
-  var maxTime = getMaxElement(times);
-  for (var i = 0; i < players.length; i++) {
-    ctx.fillStyle = (players[i] === 'Вы') ? bar.CURRENT_USER_COLOR : 'hsl(253, ' + getRandom100() + '%, 39%)';
-    ctx.font = statsText.RESULTS_FONT;
-    ctx.fillText(players[i], cloud.X + 2 * bar.GAP + 2 * bar.SPACE * i, cloud.HEIGHT);
-    ctx.fillRect(cloud.X + 2 * bar.GAP + bar.SPACE * 2 * i, cloud.HEIGHT - 2 * bar.GAP, bar.WIDTH, -bar.HEIGHT * times[i] / maxTime);
-    ctx.fillText(Math.floor(parseInt(times[i], 10)), cloud.X + 2 * bar.GAP + bar.SPACE * 2 * i, -bar.HEIGHT * times[i] / maxTime + 23 * bar.GAP);
-  }
+var renderBar = function (ctx, player, time, maxTime, barNumber) {
+  ctx.fillStyle = (player === 'Вы') ? bar.CURRENT_USER_COLOR : 'hsl(253, ' + getRandom100() + '%, 39%)';
+  ctx.font = statsText.RESULTS_FONT;
+  ctx.fillText(player, cloud.X + 2 * bar.GAP + 2 * bar.SPACE * barNumber, cloud.HEIGHT);
+  ctx.fillRect(cloud.X + 2 * bar.GAP + bar.SPACE * 2 * barNumber, cloud.HEIGHT - 2 * bar.GAP, bar.WIDTH, -bar.HEIGHT * time / maxTime);
+  ctx.fillText(Math.floor(parseInt(time, 10)), cloud.X + 2 * bar.GAP + bar.SPACE * 2 * barNumber, -bar.HEIGHT * time / maxTime + 23 * bar.GAP);
 };
 
 window.renderStatistics = function (ctx, players, times) {
+  var maxTime = getMaxElement(times);
   renderCloud(ctx, cloud.X + bar.GAP, cloud.Y + bar.GAP, cloud.WINDOW_COLOR);
   renderCloud(ctx, cloud.X, cloud.Y, cloud.SHADOW_COLOR);
   renderHeader(ctx);
-  renderBar(ctx, players, times);
+  for (var i = 0; i < players.length; i++) {
+    renderBar(ctx, players[i], times[i], maxTime, i);
+  }
 };

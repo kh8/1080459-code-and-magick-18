@@ -27,11 +27,7 @@ var generateWizard = function () {
     return WIZARD_EYES_COLORS[Math.floor((Math.random() * WIZARD_EYES_COLORS.length))];
   };
 
-  var wizard = {};
-  wizard.name = generateWizardName();
-  wizard.coatColor = generateWizardCoat();
-  wizard.eyesColor = generateWizardEyes();
-  return wizard;
+  return {name:generateWizardName(), coatColor: generateWizardCoat(), eyesColor: generateWizardEyes()};
 };
 
 

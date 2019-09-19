@@ -48,7 +48,7 @@ var fragment = document.createDocumentFragment();
 for (var i = 0; i < 4; i++) {
   wizards[i] = generateWizard();
   fragment.appendChild(renderWizard(wizards[i]));
-  similarListElement.appendChild(fragment);
 }
 
+similarListElement.appendChild(fragment);
 userDialog.querySelector('.setup-similar').classList.remove('hidden');

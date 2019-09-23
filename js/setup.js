@@ -8,15 +8,15 @@ var wizardData = {
   EYES_COLORS: ['black', 'red', 'blue', 'yellow', 'green']
 };
 
-var getRandomArrayIndex = function (DataArray) {
-  return Math.floor(Math.random() * DataArray.length);
+var getRandomWizardData = function (wizardDataArray) {
+  return wizardDataArray[Math.floor(Math.random() * wizardDataArray.length)];
 };
 
 var generateWizard = function () {
   return {
-    name: (Math.random() >= 0.5) ? wizardData.NAMES[getRandomArrayIndex(wizardData.NAMES)].concat(' ' + wizardData.SURNAMES[Math.floor(Math.random() * wizardData.SURNAMES.length)]) : wizardData.SURNAMES[Math.floor(Math.random() * wizardData.SURNAMES.length)].concat(' ' + wizardData.NAMES[getRandomArrayIndex(wizardData.NAMES)]),
-    coatColor: wizardData.COAT_COLORS[getRandomArrayIndex(wizardData.COAT_COLORS)],
-    eyesColor: wizardData.EYES_COLORS[getRandomArrayIndex(wizardData.EYES_COLORS)]};
+    name: (Math.random() >= 0.5) ? getRandomWizardData(wizardData.NAMES).concat(' ' + getRandomWizardData(wizardData.SURNAMES)) : getRandomWizardData(wizardData.SURNAMES).concat(' ' + getRandomWizardData(wizardData.NAMES)),
+    coatColor: getRandomWizardData(wizardData.COAT_COLORS),
+    eyesColor: getRandomWizardData(wizardData.EYES_COLORS)};
 };
 
 var renderWizard = function (wizard) {

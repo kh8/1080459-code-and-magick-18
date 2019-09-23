@@ -8,7 +8,7 @@ var wizardData = {
   EYES_COLORS: ['black', 'red', 'blue', 'yellow', 'green']
 };
 
-var randomBool = function () {
+var getRandomBool = function () {
   return Math.random() >= 0.5;
 };
 
@@ -20,7 +20,7 @@ var generateWizard = function () {
   var wizardName = wizardData.NAMES[getRandomArrayElement(wizardData.NAMES.length)];
   var wizardSurname = wizardData.SURNAMES[getRandomArrayElement(wizardData.SURNAMES.length)];
   return {
-    name: randomBool() ? wizardName + ' ' + wizardSurname : wizardSurname + ' ' + wizardName,
+    name: getRandomBool() ? wizardName + ' ' + wizardSurname : wizardSurname + ' ' + wizardName,
     coatColor: wizardData.COAT_COLORS[getRandomArrayElement(wizardData.COAT_COLORS.length)],
     eyesColor: wizardData.EYES_COLORS[getRandomArrayElement(wizardData.EYES_COLORS.length)]};
 };

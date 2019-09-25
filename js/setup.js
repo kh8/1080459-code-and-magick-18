@@ -8,15 +8,15 @@ var wizardData = {
   SURNAMES: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'],
   COAT_COLORS: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
   EYES_COLORS: ['black', 'red', 'blue', 'yellow', 'green'],
-  FIREBALL_COLOR: ['#ee4830','#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
+  FIREBALL_COLORS: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
 };
 
 var getRandomBool = function () {
   return Math.random() >= 0.5;
 };
 
-var getRandomArrayElement = function (arrayLength) {
-  return Math.floor(Math.random() * arrayLength);
+var getRandomArrayElement = function (arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 };
 
 var generateWizard = function () {
@@ -47,17 +47,17 @@ var getWizards = function (wizardsCount) {
 };
 
 var initSetup = function () {
-  var onPopupEscPress = function(evt) {
+  var onPopupEscPress = function (evt) {
     if (evt.keyCode === ESC_KEYCODE) {
       closePopup();
     }
   };
-  var openPopup = function() {
+  var openPopup = function () {
     setup.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
   };
 
-  var closePopup = function() {
+  var closePopup = function () {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
   };
@@ -66,19 +66,20 @@ var initSetup = function () {
   var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
-  var setupForm = setup.querySelector('.setup-wizard-form');
   var setupNameInput = setup.querySelector('.setup-user-name');
   var setupWizardCoat = setup.querySelector('.setup-wizard .wizard-coat');
+  var setupWizardCoatInput = document.querySelector('input[name="coat-color"]');
   var setupWizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
+  var setupWizardEyesInput = document.querySelector('input[name="eyes-color"]');
   var setupFireball = setup.querySelector('.setup-fireball-wrap');
-  var setupSubmitBtn = setup.querySelector('.setup-submit');
+  var setupFireballInput = setupFireball.querySelector('input');
   similarListElement.appendChild(getWizards(WIZARDS_COUNT));
 
-  setupOpen.addEventListener ('click', function() {
+  setupOpen.addEventListener('click', function () {
     openPopup();
   });
 
-  setupOpen.addEventListener('keydown', function(evt) {
+  setupOpen.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
       openPopup();
     }
@@ -86,28 +87,31 @@ var initSetup = function () {
 
   setupNameInput.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ESC_KEYCODE) {
-      evt.stopPropagation()
+      evt.stopPropagation();
     }
   });
 
-  setupWizardCoat.addEventListener('click', function() {
-    setupWizardCoat.style.fill = getRandomArrayElement(wizardData.COAT_COLORS);
+  setupWizardCoat.addEventListener('click', function () {
+    setupWizardCoatInput.value = getRandomArrayElement(wizardData.COAT_COLORS);
+    setupWizardCoat.style.fill = setupWizardCoatInput.value;
   });
 
-  setupWizardEyes.addEventListener('click', function() {
-    setupWizardEyes.style.fill = getRandomArrayElement(wizardData.EYES_COLORS);
+  setupWizardEyes.addEventListener('click', function () {
+    setupWizardEyesInput.value = getRandomArrayElement(wizardData.EYES_COLORS);
+    setupWizardEyes.style.fill = setupWizardEyesInput.value;
   });
 
-  setupFireball.addEventListener('click', function() {
-    setupFireball.style.fill = getRandomArrayElement(wizardData.FIREBALL_COLORS);
+  setupFireball.addEventListener('click', function () {
+    setupFireballInput.value = getRandomArrayElement(wizardData.FIREBALL_COLORS);
+    setupFireball.style.backgroundColor = setupFireballInput.value;
   });
 
 
-  setupClose.addEventListener ('click', function() {
+  setupClose.addEventListener('click', function () {
     closePopup();
   });
 
-  setupClose.addEventListener('keydown', function(evt) {
+  setupClose.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
       closePopup();
     }

@@ -124,7 +124,7 @@ var initSetup = function () {
       closePopup();
     }
   });
+  similarListElement.appendChild(renderWizards(WIZARDS_COUNT));
 };
 
-similarListElement.appendChild(renderWizards(WIZARDS_COUNT));
 initSetup();
